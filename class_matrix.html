@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GpuMat: Matrix Class Reference</title>
+<title>GpuMat: Matrix&lt; T &gt; Class Template Reference</title>
+<link rel="icon" href="favicon (2).ico" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,10 +23,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="favicon (9).ico"/></td>
+  <td id="projectlogo"><img alt="Logo" src="a37ja-etbo3-001.ico"/></td>
   <td id="projectalign">
    <div id="projectname">GpuMat<span id="projectnumber">&#160;1.0.1</span>
    </div>
+   <div id="projectbrief">A GpuMat for CS205 C/C++ Project4</div>
   </td>
  </tr>
  </tbody>
@@ -74,65 +76,603 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_matrix-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Matrix Class Reference</div></div>
+  <div class="headertitle"><div class="title">Matrix&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base MAT class for GPU memory with reference counting.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5199fa2e77c759fea497394a304331e2" id="r_a5199fa2e77c759fea497394a304331e2"><td class="memItemLeft" align="right" valign="top"><a id="a5199fa2e77c759fea497394a304331e2" name="a5199fa2e77c759fea497394a304331e2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Matrix</b> (size_t rows, size_t cols, bool owner=true, int device=0)</td></tr>
-<tr class="separator:a5199fa2e77c759fea497394a304331e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1908de436fe863c8a302a31ff96cf977" id="r_a1908de436fe863c8a302a31ff96cf977"><td class="memItemLeft" align="right" valign="top"><a id="a1908de436fe863c8a302a31ff96cf977" name="a1908de436fe863c8a302a31ff96cf977"></a>
+<tr class="memitem:ac01d6d1def6be4bf6145ca4a849863cd" id="r_ac01d6d1def6be4bf6145ca4a849863cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac01d6d1def6be4bf6145ca4a849863cd">Matrix</a> (size_t rows, size_t cols, int device=0)</td></tr>
+<tr class="separator:ac01d6d1def6be4bf6145ca4a849863cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab829dc851f8fcafee35a729a31457d73" id="r_ab829dc851f8fcafee35a729a31457d73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab829dc851f8fcafee35a729a31457d73">Matrix</a> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="separator:ab829dc851f8fcafee35a729a31457d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2824c657b632b2839c2289933302d039" id="r_a2824c657b632b2839c2289933302d039"><td class="memItemLeft" align="right" valign="top"><a id="a2824c657b632b2839c2289933302d039" name="a2824c657b632b2839c2289933302d039"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getRows</b> () const noexcept</td></tr>
-<tr class="separator:a1908de436fe863c8a302a31ff96cf977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9acc63e199985a22837fd8f387186469" id="r_a9acc63e199985a22837fd8f387186469"><td class="memItemLeft" align="right" valign="top"><a id="a9acc63e199985a22837fd8f387186469" name="a9acc63e199985a22837fd8f387186469"></a>
+<tr class="separator:a2824c657b632b2839c2289933302d039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8707a2cc923611d8f2b64bd285036d8c" id="r_a8707a2cc923611d8f2b64bd285036d8c"><td class="memItemLeft" align="right" valign="top"><a id="a8707a2cc923611d8f2b64bd285036d8c" name="a8707a2cc923611d8f2b64bd285036d8c"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getCols</b> () const noexcept</td></tr>
-<tr class="separator:a9acc63e199985a22837fd8f387186469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b0216ee46cafd450aa5a5c3b0e598d0" id="r_a6b0216ee46cafd450aa5a5c3b0e598d0"><td class="memItemLeft" align="right" valign="top"><a id="a6b0216ee46cafd450aa5a5c3b0e598d0" name="a6b0216ee46cafd450aa5a5c3b0e598d0"></a>
+<tr class="separator:a8707a2cc923611d8f2b64bd285036d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c47eb0c6f93d5c5453f09ce72ace990" id="r_a8c47eb0c6f93d5c5453f09ce72ace990"><td class="memItemLeft" align="right" valign="top"><a id="a8c47eb0c6f93d5c5453f09ce72ace990" name="a8c47eb0c6f93d5c5453f09ce72ace990"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const noexcept</td></tr>
-<tr class="separator:a6b0216ee46cafd450aa5a5c3b0e598d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d017a179c443ef758b1d344b6d8c96f" id="r_a0d017a179c443ef758b1d344b6d8c96f"><td class="memItemLeft" align="right" valign="top"><a id="a0d017a179c443ef758b1d344b6d8c96f" name="a0d017a179c443ef758b1d344b6d8c96f"></a>
-float *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () const noexcept</td></tr>
-<tr class="separator:a0d017a179c443ef758b1d344b6d8c96f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affab1c274b81ce83159f55c80f191331" id="r_affab1c274b81ce83159f55c80f191331"><td class="memItemLeft" align="right" valign="top"><a id="affab1c274b81ce83159f55c80f191331" name="affab1c274b81ce83159f55c80f191331"></a>
-__device__ __host__ float &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (size_t row, size_t col)</td></tr>
-<tr class="separator:affab1c274b81ce83159f55c80f191331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84e0987a6c94a04a62771ce3c3ae16cc" id="r_a84e0987a6c94a04a62771ce3c3ae16cc"><td class="memItemLeft" align="right" valign="top"><a id="a84e0987a6c94a04a62771ce3c3ae16cc" name="a84e0987a6c94a04a62771ce3c3ae16cc"></a>
-__device__ __host__ const float &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (size_t row, size_t col) const</td></tr>
-<tr class="separator:a84e0987a6c94a04a62771ce3c3ae16cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78ca86168259fdd09159c500dc002f82" id="r_a78ca86168259fdd09159c500dc002f82"><td class="memItemLeft" align="right" valign="top"><a id="a78ca86168259fdd09159c500dc002f82" name="a78ca86168259fdd09159c500dc002f82"></a>
-<a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:a78ca86168259fdd09159c500dc002f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cedf82d2a6ff379c38527e4c7c1d6f9" id="r_a5cedf82d2a6ff379c38527e4c7c1d6f9"><td class="memItemLeft" align="right" valign="top"><a id="a5cedf82d2a6ff379c38527e4c7c1d6f9" name="a5cedf82d2a6ff379c38527e4c7c1d6f9"></a>
-<a class="el" href="class_matrix.html">Matrix</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:a5cedf82d2a6ff379c38527e4c7c1d6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa18b9161e4a64e26906136ecfa8fdc9b" id="r_aa18b9161e4a64e26906136ecfa8fdc9b"><td class="memItemLeft" align="right" valign="top"><a id="aa18b9161e4a64e26906136ecfa8fdc9b" name="aa18b9161e4a64e26906136ecfa8fdc9b"></a>
-<a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:aa18b9161e4a64e26906136ecfa8fdc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5c13f2f7f2d01419453cd4ec42d9613" id="r_ab5c13f2f7f2d01419453cd4ec42d9613"><td class="memItemLeft" align="right" valign="top"><a id="ab5c13f2f7f2d01419453cd4ec42d9613" name="ab5c13f2f7f2d01419453cd4ec42d9613"></a>
-<a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:ab5c13f2f7f2d01419453cd4ec42d9613"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e40db12ae78b7616ee3f099bb15f13d" id="r_a3e40db12ae78b7616ee3f099bb15f13d"><td class="memItemLeft" align="right" valign="top"><a id="a3e40db12ae78b7616ee3f099bb15f13d" name="a3e40db12ae78b7616ee3f099bb15f13d"></a>
-<a class="el" href="class_matrix.html">Matrix</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
-<tr class="separator:a3e40db12ae78b7616ee3f099bb15f13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99160101850342b81945f3e836465efb" id="r_a99160101850342b81945f3e836465efb"><td class="memItemLeft" align="right" valign="top"><a id="a99160101850342b81945f3e836465efb" name="a99160101850342b81945f3e836465efb"></a>
+<tr class="separator:a8c47eb0c6f93d5c5453f09ce72ace990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75d1d261d7350f80e9fe52045b44b18" id="r_af75d1d261d7350f80e9fe52045b44b18"><td class="memItemLeft" align="right" valign="top"><a id="af75d1d261d7350f80e9fe52045b44b18" name="af75d1d261d7350f80e9fe52045b44b18"></a>
+T *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () const noexcept</td></tr>
+<tr class="separator:af75d1d261d7350f80e9fe52045b44b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46291ccbf9379844fb842eea6c3668d1" id="r_a46291ccbf9379844fb842eea6c3668d1"><td class="memItemLeft" align="right" valign="top"><a id="a46291ccbf9379844fb842eea6c3668d1" name="a46291ccbf9379844fb842eea6c3668d1"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>getRolColData</b> (size_t row, size_t col) const</td></tr>
+<tr class="separator:a46291ccbf9379844fb842eea6c3668d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7bcb25f6a56d27183dea6a64be78e7" id="r_a2b7bcb25f6a56d27183dea6a64be78e7"><td class="memItemLeft" align="right" valign="top">__device__ __host__ T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b7bcb25f6a56d27183dea6a64be78e7">operator()</a> (size_t row, size_t col)</td></tr>
+<tr class="memdesc:a2b7bcb25f6a56d27183dea6a64be78e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">重载（）：给矩阵赋值  <br /></td></tr>
+<tr class="separator:a2b7bcb25f6a56d27183dea6a64be78e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa781bdc19b3681733ddc45c8971de467" id="r_aa781bdc19b3681733ddc45c8971de467"><td class="memItemLeft" align="right" valign="top"><a id="aa781bdc19b3681733ddc45c8971de467" name="aa781bdc19b3681733ddc45c8971de467"></a>
+__device__ __host__ const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (size_t row, size_t col) const</td></tr>
+<tr class="separator:aa781bdc19b3681733ddc45c8971de467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e010a846d76746e2cf94540adf96f5e" id="r_a7e010a846d76746e2cf94540adf96f5e"><td class="memItemLeft" align="right" valign="top"><a id="a7e010a846d76746e2cf94540adf96f5e" name="a7e010a846d76746e2cf94540adf96f5e"></a>
+<a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="separator:a7e010a846d76746e2cf94540adf96f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a414ac57670f9f2c295eb095cff79e8fb" id="r_a414ac57670f9f2c295eb095cff79e8fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a414ac57670f9f2c295eb095cff79e8fb">operator+=</a> (const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="separator:a414ac57670f9f2c295eb095cff79e8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ab98a4c94abf15f368e19054ecf246" id="r_a82ab98a4c94abf15f368e19054ecf246"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82ab98a4c94abf15f368e19054ecf246">operator-</a> (const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;other)</td></tr>
+<tr class="separator:a82ab98a4c94abf15f368e19054ecf246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1da650e3d336cebea80b32aa89d4e1" id="r_a7b1da650e3d336cebea80b32aa89d4e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b1da650e3d336cebea80b32aa89d4e1">operator*</a> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="separator:a7b1da650e3d336cebea80b32aa89d4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f93bf16c650098a592362841888ffb" id="r_ac3f93bf16c650098a592362841888ffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3f93bf16c650098a592362841888ffb">SetParentMatrix</a> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="memdesc:ac3f93bf16c650098a592362841888ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set our <a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a> as the ROI (Region of Interest) of other.  <br /></td></tr>
+<tr class="separator:ac3f93bf16c650098a592362841888ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d1eeabf9f919a6275a04ff9bb355e55" id="r_a7d1eeabf9f919a6275a04ff9bb355e55"><td class="memItemLeft" align="right" valign="top"><a id="a7d1eeabf9f919a6275a04ff9bb355e55" name="a7d1eeabf9f919a6275a04ff9bb355e55"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setROIas</b> (size_t startRow, size_t startCol, size_t numRows, size_t numCols, const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="separator:a7d1eeabf9f919a6275a04ff9bb355e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af312b4bc9cf582eda34ae727b29b999b" id="r_af312b4bc9cf582eda34ae727b29b999b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_matrix.html">Matrix</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af312b4bc9cf582eda34ae727b29b999b">operator=</a> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other)</td></tr>
+<tr class="separator:af312b4bc9cf582eda34ae727b29b999b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a7748c0ac6dbf3f63c927f9db783a9" id="r_ab1a7748c0ac6dbf3f63c927f9db783a9"><td class="memItemLeft" align="right" valign="top"><a id="ab1a7748c0ac6dbf3f63c927f9db783a9" name="ab1a7748c0ac6dbf3f63c927f9db783a9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other) const</td></tr>
+<tr class="separator:ab1a7748c0ac6dbf3f63c927f9db783a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ad94ea2b2257d8c68308071a3ab928e" id="r_a9ad94ea2b2257d8c68308071a3ab928e"><td class="memItemLeft" align="right" valign="top"><a id="a9ad94ea2b2257d8c68308071a3ab928e" name="a9ad94ea2b2257d8c68308071a3ab928e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>multiply</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other, <a class="el" href="class_matrix.html">Matrix</a> *result_ptr)</td></tr>
-<tr class="separator:a99160101850342b81945f3e836465efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87f32f91829fdc3bab8599d240f7016e" id="r_a87f32f91829fdc3bab8599d240f7016e"><td class="memItemLeft" align="right" valign="top"><a id="a87f32f91829fdc3bab8599d240f7016e" name="a87f32f91829fdc3bab8599d240f7016e"></a>
+<tr class="separator:a9ad94ea2b2257d8c68308071a3ab928e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec79f42a51402044c57ab15523881e61" id="r_aec79f42a51402044c57ab15523881e61"><td class="memItemLeft" align="right" valign="top"><a id="aec79f42a51402044c57ab15523881e61" name="aec79f42a51402044c57ab15523881e61"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>changeGPU</b> (int device_num)</td></tr>
-<tr class="separator:a87f32f91829fdc3bab8599d240f7016e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4678b936c57452dbed6cf9cd1c2bf24" id="r_aa4678b936c57452dbed6cf9cd1c2bf24"><td class="memItemLeft" align="right" valign="top"><a id="aa4678b936c57452dbed6cf9cd1c2bf24" name="aa4678b936c57452dbed6cf9cd1c2bf24"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckRowsCols</b> (size_t row, size_t col) const</td></tr>
-<tr class="separator:aa4678b936c57452dbed6cf9cd1c2bf24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abad4f764e17de0076ecdd89ffd1dbf50" id="r_abad4f764e17de0076ecdd89ffd1dbf50"><td class="memItemLeft" align="right" valign="top"><a id="abad4f764e17de0076ecdd89ffd1dbf50" name="abad4f764e17de0076ecdd89ffd1dbf50"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> () const</td></tr>
-<tr class="separator:abad4f764e17de0076ecdd89ffd1dbf50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6db841fb898166e8c97ef4632bcb7607" id="r_a6db841fb898166e8c97ef4632bcb7607"><td class="memItemLeft" align="right" valign="top"><a id="a6db841fb898166e8c97ef4632bcb7607" name="a6db841fb898166e8c97ef4632bcb7607"></a>
+<tr class="separator:aec79f42a51402044c57ab15523881e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e184253f6a0e604aabce4e8f77fb57" id="r_a92e184253f6a0e604aabce4e8f77fb57"><td class="memItemLeft" align="right" valign="top"><a id="a92e184253f6a0e604aabce4e8f77fb57" name="a92e184253f6a0e604aabce4e8f77fb57"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isEqual</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other) const</td></tr>
+<tr class="separator:a92e184253f6a0e604aabce4e8f77fb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a230b6620b7a4e9c4df7558e13999a664" id="r_a230b6620b7a4e9c4df7558e13999a664"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a230b6620b7a4e9c4df7558e13999a664">checkRowsCols</a> (size_t row, size_t col) const</td></tr>
+<tr class="separator:a230b6620b7a4e9c4df7558e13999a664"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60f30e5bd44a867b51c40284d87608e" id="r_ab60f30e5bd44a867b51c40284d87608e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab60f30e5bd44a867b51c40284d87608e">print</a> () const</td></tr>
+<tr class="separator:ab60f30e5bd44a867b51c40284d87608e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b4c28a8d2c961bcb53bd53584dcb7e7" id="r_a0b4c28a8d2c961bcb53bd53584dcb7e7"><td class="memItemLeft" align="right" valign="top"><a id="a0b4c28a8d2c961bcb53bd53584dcb7e7" name="a0b4c28a8d2c961bcb53bd53584dcb7e7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>shape_equals</b> (const <a class="el" href="class_matrix.html">Matrix</a> &amp;other) const</td></tr>
-<tr class="separator:a6db841fb898166e8c97ef4632bcb7607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a0b4c28a8d2c961bcb53bd53584dcb7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f52a994fc76911c8e358a7dc9a7a3db" id="r_a1f52a994fc76911c8e358a7dc9a7a3db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f52a994fc76911c8e358a7dc9a7a3db">ensure_unique</a> ()</td></tr>
+<tr class="separator:a1f52a994fc76911c8e358a7dc9a7a3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3b35bf3753f11281d28f5940b90a2e" id="r_a7e3b35bf3753f11281d28f5940b90a2e"><td class="memItemLeft" align="right" valign="top"><a id="a7e3b35bf3753f11281d28f5940b90a2e" name="a7e3b35bf3753f11281d28f5940b90a2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>deepCopy</b> (const T *src_data, size_t size) const</td></tr>
+<tr class="memdesc:a7e3b35bf3753f11281d28f5940b90a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">深拷贝函数，用于在CUDA设备之间复制数据 <br /></td></tr>
+<tr class="separator:a7e3b35bf3753f11281d28f5940b90a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a017da8fc0eda1eceb562209122f98406" id="r_a017da8fc0eda1eceb562209122f98406"><td class="memItemLeft" align="right" valign="top"><a id="a017da8fc0eda1eceb562209122f98406" name="a017da8fc0eda1eceb562209122f98406"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>deepCopy</b> (const T *src_data, size_t size, int device)</td></tr>
+<tr class="memdesc:a017da8fc0eda1eceb562209122f98406"><td class="mdescLeft">&#160;</td><td class="mdescRight">深拷贝函数，用于在CUDA设备之间复制数据 <br /></td></tr>
+<tr class="separator:a017da8fc0eda1eceb562209122f98406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30768ffed47aeb3ddd33b80858aa4d44" id="r_a30768ffed47aeb3ddd33b80858aa4d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30768ffed47aeb3ddd33b80858aa4d44">upload</a> (T *device_data)</td></tr>
+<tr class="memdesc:a30768ffed47aeb3ddd33b80858aa4d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">上传数据到 GPU  <br /></td></tr>
+<tr class="separator:a30768ffed47aeb3ddd33b80858aa4d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74882ad0ce6dd1077692ed286ff7d078" id="r_a74882ad0ce6dd1077692ed286ff7d078"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74882ad0ce6dd1077692ed286ff7d078">download</a> ()</td></tr>
+<tr class="memdesc:a74882ad0ce6dd1077692ed286ff7d078"><td class="mdescLeft">&#160;</td><td class="mdescRight">从 GPU 下载数据到 CPU  <br /></td></tr>
+<tr class="separator:a74882ad0ce6dd1077692ed286ff7d078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aa7df38b526e2ebbb648a107cfa84dd16" id="r_aa7df38b526e2ebbb648a107cfa84dd16"><td class="memItemLeft" align="right" valign="top"><a id="aa7df38b526e2ebbb648a107cfa84dd16" name="aa7df38b526e2ebbb648a107cfa84dd16"></a>
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;matrix)</td></tr>
+<tr class="separator:aa7df38b526e2ebbb648a107cfa84dd16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
+class Matrix&lt; T &gt;</div><p>Base MAT class for GPU memory with reference counting. </p>
+<p>Its limitations:</p>
+<ul>
+<li>no arbitrary dimensions support (only 2D)</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>In contrast with Mat, in most cases GpuMat::isContinuous() == false . This means that rows are aligned to a size depending on the hardware. Single-row GpuMat is always a continuous matrix.</dd>
+<dd>
+You are not recommended to leave static or global GpuMat variables allocated, that is, to rely on its destructor. The destruction order of such variables and CUDA context is undefined. GPU memory release function returns error if the CUDA context has been destroyed before.</dd></dl>
+<p>Some member functions are described as a "Blocking Call" while some are described as a "Non-Blocking Call". Blocking functions are synchronous to host. It is guaranteed that the GPU operation is finished when the function returns. However, non-blocking functions are asynchronous to host. Those functions may return even if the GPU operation is not finished.</p>
+<p>Compared to their blocking counterpart, non-blocking functions accept Stream as an additional argument. If a non-default stream is passed, the GPU operation may overlap with operations in other streams.</p>
+<dl class="section see"><dt>See also</dt><dd>Mat </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac01d6d1def6be4bf6145ca4a849863cd" name="ac01d6d1def6be4bf6145ca4a849863cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01d6d1def6be4bf6145ca4a849863cd">&#9670;&#160;</a></span>Matrix() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;<a class="el" href="class_matrix.html">::Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>rows</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>cols</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>device</em><span class="paramdefsep"> = </span><span class="paramdefval">0</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Constructor</td><td>for the first time </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_ac01d6d1def6be4bf6145ca4a849863cd_cgraph.png" border="0" usemap="#aclass_matrix_ac01d6d1def6be4bf6145ca4a849863cd_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_ac01d6d1def6be4bf6145ca4a849863cd_icgraph.png" border="0" usemap="#aclass_matrix_ac01d6d1def6be4bf6145ca4a849863cd_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ab829dc851f8fcafee35a729a31457d73" name="ab829dc851f8fcafee35a729a31457d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab829dc851f8fcafee35a729a31457d73">&#9670;&#160;</a></span>Matrix() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;<a class="el" href="class_matrix.html">::Matrix</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">拷贝构造函数，增加引用计数</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a230b6620b7a4e9c4df7558e13999a664" name="a230b6620b7a4e9c4df7558e13999a664"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a230b6620b7a4e9c4df7558e13999a664">&#9670;&#160;</a></span>checkRowsCols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::checkRowsCols </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>row</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td></td></tr>
+    <tr><td class="paramname">col</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>false if row,col are bigger than 1000000 or smaller than 0 </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_a230b6620b7a4e9c4df7558e13999a664_icgraph.png" border="0" usemap="#aclass_matrix_a230b6620b7a4e9c4df7558e13999a664_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a74882ad0ce6dd1077692ed286ff7d078" name="a74882ad0ce6dd1077692ed286ff7d078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74882ad0ce6dd1077692ed286ff7d078">&#9670;&#160;</a></span>download()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T * <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::download </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从 GPU 下载数据到 CPU </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">返回主机上的数据</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f52a994fc76911c8e358a7dc9a7a3db" name="a1f52a994fc76911c8e358a7dc9a7a3db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f52a994fc76911c8e358a7dc9a7a3db">&#9670;&#160;</a></span>ensure_unique()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::ensure_unique </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">私有辅助函数，用于确保数据的唯一性</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_a1f52a994fc76911c8e358a7dc9a7a3db_cgraph.png" border="0" usemap="#aclass_matrix_a1f52a994fc76911c8e358a7dc9a7a3db_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a2b7bcb25f6a56d27183dea6a64be78e7" name="a2b7bcb25f6a56d27183dea6a64be78e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7bcb25f6a56d27183dea6a64be78e7">&#9670;&#160;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">__device__ __host__ T &amp; <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>row</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>col</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载（）：给矩阵赋值 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row,col</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>const T&amp; operator() </dd></dl>
+
+</div>
+</div>
+<a id="a7b1da650e3d336cebea80b32aa89d4e1" name="a7b1da650e3d336cebea80b32aa89d4e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b1da650e3d336cebea80b32aa89d4e1">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a> <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a></td><td>multiplication </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_a7b1da650e3d336cebea80b32aa89d4e1_cgraph.png" border="0" usemap="#aclass_matrix_a7b1da650e3d336cebea80b32aa89d4e1_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a414ac57670f9f2c295eb095cff79e8fb" name="a414ac57670f9f2c295eb095cff79e8fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a414ac57670f9f2c295eb095cff79e8fb">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp; <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a></td><td>A += B </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a82ab98a4c94abf15f368e19054ecf246" name="a82ab98a4c94abf15f368e19054ecf246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ab98a4c94abf15f368e19054ecf246">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a></td><td>subtraction </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_matrix_a82ab98a4c94abf15f368e19054ecf246_cgraph.png" border="0" usemap="#aclass_matrix_a82ab98a4c94abf15f368e19054ecf246_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af312b4bc9cf582eda34ae727b29b999b" name="af312b4bc9cf582eda34ae727b29b999b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af312b4bc9cf582eda34ae727b29b999b">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_matrix.html">Matrix</a> &amp; <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Matrix&amp;</td><td>other 浅拷贝 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab60f30e5bd44a867b51c40284d87608e" name="ab60f30e5bd44a867b51c40284d87608e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60f30e5bd44a867b51c40284d87608e">&#9670;&#160;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::print </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">print</td><td>matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac3f93bf16c650098a592362841888ffb" name="ac3f93bf16c650098a592362841888ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3f93bf16c650098a592362841888ffb">&#9670;&#160;</a></span>SetParentMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::SetParentMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set our <a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a> as the ROI (Region of Interest) of other. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startRow,startCol,roiRows,roiCols</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a30768ffed47aeb3ddd33b80858aa4d44" name="a30768ffed47aeb3ddd33b80858aa4d44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30768ffed47aeb3ddd33b80858aa4d44">&#9670;&#160;</a></span>upload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_matrix.html">Matrix</a>&lt; T &gt;::upload </td>
+          <td>(</td>
+          <td class="paramtype">T *</td>          <td class="paramname"><span class="paramname"><em>device_data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>上传数据到 GPU </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">上传到GPU上的数据的指针</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><b>a1.cpp</b></li>
 </ul>
