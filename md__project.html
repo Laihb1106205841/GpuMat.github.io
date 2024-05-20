@@ -51,7 +51,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,18 +72,18 @@ $(function() {
 </div>
 </div>
 
+</div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">CS205·C/C++ Programming Report </div></div>
+  <div class="headertitle"><div class="title">CS205·C/C++ Programming Report</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__project"></a> </p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md4"></a> </p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Project4 Report: A 2D GPU Mat</h1>
 <h2><a class="anchor" id="autotoc_md6"></a>
 赖海斌</h2>
 <h2><a class="anchor" id="autotoc_md7"></a>
 12211612</h2>
-<p>有图片的版本放在了： <a href="https://github.com/Laihb1106205841/GpuMat.github.io">https://github.com/Laihb1106205841/GpuMat.github.io</a></p>
 <p>[ 【NVIDIA 黄仁勋 跳科目三】 <a href="https://www.bilibili.com/video/BV1Ye411e7y1/?share_source=copy_web&vd_source=72eac555730ba7e7a64f9fa1d7f2b2d4">https://www.bilibili.com/video/BV1Ye411e7y1/?share_source=copy_web&amp;vd_source=72eac555730ba7e7a64f9fa1d7f2b2d4</a>]</p>
 <h2><a class="anchor" id="autotoc_md8"></a>
 摘要</h2>
@@ -166,7 +165,7 @@ Part 3:实现过程 &amp; 难点分析</h1>
 <p>矩阵在拷贝的时候，我们设想的浅拷贝应该是只拿取原矩阵的大小、数值指针，对数据层面不会进行复制或重写等操作。为解决这一问题，我们引入了ref_count计数器，针对同一块矩阵对其使用次数进行计数。在初始化阶段，Matrix在GPU上分配一段内存给矩阵使用，CPU上记录当前矩阵的信息及引用次数。</p>
 <p>随着新矩阵在“=”运算符后赋值、浅拷贝方法中创建，ref_count会自增加1。而每次析构矩阵时，ref_count会减1。当ref_count在最后一个引用的Matrix也将被释放时，我们再释放GPU上的data。这里ref_count使用int是防止我们在设计时不小心多减成了负数，这样会非常难处理。</p>
 <p>不过我的最初版本跟这个count的版本不同。我最初是想使用一个bool owner来管理data。每当我创建一个新的浅拷贝时，新的矩阵owner = true，旧的为false。也就是把data交给最后一位拷贝的矩阵处理。但是这里面存在的问题是，假如我们中途不小心删除了最后一位，那么我们将永远无法释放GPU上的数据了。因此，我后面改用了count这一更安全的设计。这也是share_pointer与opencv里的想法。</p>
-<p><a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="mul Kernel be faster! https://github.com/njuhope/cuda_sgemm/blob/master/gemm.cu">要注意的是，GPU上的数据须使用cudaFree()</a>函数将数据释放而不是delete[]。面对空指针，cuda文档里提到，“cudaFree If devPtr is 0, no operation is performed” ，这和free函数的效果是一样的。 <a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="mul Kernel be faster! https://github.com/njuhope/cuda_sgemm/blob/master/gemm.cu">但是神奇的是，我们可以多次声明cudaFree()</a>函数而不引起程序崩溃，这可能是因为虽然在GPU上我们确实是二次释放了内存，但是我们在CPU上对错误异常没有进行处理。</p>
+<p><a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="GPU mul kernel.">要注意的是，GPU上的数据须使用cudaFree()</a>函数将数据释放而不是delete[]。面对空指针，cuda文档里提到，“cudaFree If devPtr is 0, no operation is performed” ，这和free函数的效果是一样的。 <a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="GPU mul kernel.">但是神奇的是，我们可以多次声明cudaFree()</a>函数而不引起程序崩溃，这可能是因为虽然在GPU上我们确实是二次释放了内存，但是我们在CPU上对错误异常没有进行处理。</p>
 <p>如果想处理这一异常，我们需要检查它返回的cudaSuccess。</p>
 <p>另外查看文档发现，cudaMalloc使用的是指向指针的指针，CUDA设计者选择使用返回值来携带错误状态[ 更多的讨论：https://stackoverflow.org.cn/questions/12936986]。这和我们之前用的malloc函数返回一个新的指针不同。我们也会在接下来的多GPU环节结合文章[ 内存分配不再神秘：深入剖析malloc函数实现原理与机制 - 知乎 (zhihu.com)] 对malloc的介绍以及Project3学习的知识比较这两个函数。</p>
 <h3><a class="anchor" id="autotoc_md19"></a>
@@ -194,36 +193,30 @@ Part 3:实现过程 &amp; 难点分析</h1>
 <p>一台机子上不同设备可以访问内存，那，多台机可不可以？这就是RDMA。</p>
 <p>在网络传输中，传统的TCP/IP技术在数据包处理过程中，要经过操作系统及其他软件层，需要占用大量的服务器资源和内存总线带宽，数据在系统内存、处理器缓存和网络控制器缓存之间来回进行复制移动，给服务器的CPU和内存造成了沉重负担。 RDMA是一种新的直接内存访问技术，让计算机可以直接存取其他计算机的内存，而不需要经过处理器的处理，不对操作系统造成任何影响。</p>
 <p>在实现上，RDMA实际上是一种网卡与软件架构充分优化的远端内存直接高速访问技术，通过将RDMA协议固化于硬件(即网卡)上，以及支持Zero-copy和Kernel bypass这两种途径来达到其高性能的远程直接数据存取的目标。使用RDMA的优势如下：</p>
-<p>零拷贝(Zero-copy) - 应用程序能够直接执行数据传输，在不涉及到网络软件栈的情况下。数据能够被直接发送到缓冲区或者能够直接从缓冲区里接收，而不需要被复制到网络层。</p>
-<p>内核旁路(Kernel bypass) - 应用程序可以直接在用户态执行数据传输，不需要在内核态与用户态之间做上下文切换。</p>
-<p>不需要CPU干预(No CPU involvement) - 应用程序可以访问远程主机内存而不消耗远程主机中的任何CPU。远程主机内存能够被读取而不需要远程主机上的进程或CPU参与。远程主机的CPU的缓存(cache)不会被访问的内存内容所填充。</p>
-<p>消息基于事务(Message based transactions) - 数据被处理为离散消息而不是流，消除了应用程序将流切割为不同消息/事务的需求。</p>
-<p>支持分散/聚合条目(Scatter/gather entries support) - RDMA原生态支持分散/聚合。也就是说，读取多个内存缓冲区然后作为一个流发出去或者接收一个流然后写入到多个内存缓冲区里去。 在主流的RDMA技术中，可以划分为两大阵营。一个是IB技术, 另一个是支持RDMA的以太网技术(RoCE和iWARP)。</p>
+<p>零拷贝(Zero-copy) - 应用程序能够直接执行数据传输，在不涉及到网络软件栈的情况下。数据能够被直接发送到缓冲区或者能够直接从缓冲区里接收，而不需要被复制到网络层。 内核旁路(Kernel bypass) - 应用程序可以直接在用户态执行数据传输，不需要在内核态与用户态之间做上下文切换。 不需要CPU干预(No CPU involvement) - 应用程序可以访问远程主机内存而不消耗远程主机中的任何CPU。远程主机内存能够被读取而不需要远程主机上的进程或CPU参与。远程主机的CPU的缓存(cache)不会被访问的内存内容所填充。 消息基于事务(Message based transactions) - 数据被处理为离散消息而不是流，消除了应用程序将流切割为不同消息/事务的需求。 支持分散/聚合条目(Scatter/gather entries support) - RDMA原生态支持分散/聚合。也就是说，读取多个内存缓冲区然后作为一个流发出去或者接收一个流然后写入到多个内存缓冲区里去。 在主流的RDMA技术中，可以划分为两大阵营。一个是IB技术, 另一个是支持RDMA的以太网技术(RoCE和iWARP)。</p>
 <p>NVIDIA一看：这东西好啊！于是做出了GPUDirect RDMA。将IB互相连接起来，就实现了GPU间的通信。</p>
 <p>在两个对等体之间设置 GPUDirect RDMA 通信时，从 PCI Express 设备的角度来看，所有物理地址都是相同的。传统上，BAR 窗口等资源使用 CPU 的 MMU 作为内存映射 I/O （MMIO） 地址映射到用户或内核地址空间。但是，由于当前操作系统没有足够的机制在驱动程序之间交换 MMIO 区域，因此 NVIDIA 内核驱动程序会导出函数以执行必要的地址转换和映射。</p>
 <p>在很多时候，我们的计算需要GPU-GPU的P2P通信，NVIDIA就做出了GPUDirect P2P。GPUDirect P2P通信技术将数据从源 GPU 复制到同一节点中的另一个 GPU，不再需要将数据临时暂存到主机内存中。如果两个 GPU 连接到同一 PCIe 总线，GPUDirect P2P 允许访问其相应的内存，而无需 CPU 参与。</p>
 <p>我们实现了基于P2P通信的一个changeGPU函数，它可以将原本放在GPU0的矩阵转移到GPU1去。</p>
 <p>这里边的核心函数就是CudaMemcpyPeer，将GPU device的数据拷贝到GPU device_num上。 由于篇幅限制，对Direct技术的介绍就暂时到这里。</p>
-<p>在刚刚的通信中，PCIe3.0*16 的双向带宽不足 32GB/s，当训练数据不断增长时，PCIe 的带宽满足不了需求，会逐渐成为系统瓶颈。为提升多 GPU 之间的通信性能，充分发挥 GPU 的计算性能，NVIDIA 于 2016 年发布了全新架构的 NVLink。NVLink 是一种高速、高带宽的互连技术，用于连接多个 GPU 之间或连接 GPU 与其他设备（如CPU、内存等）之间的通信。NVLink 提供了直接的点对点连接，具有比传统的 PCIe 总线更高的传输速度和更低的延迟。</p>
-<p>NVLink 支持多种连接配置，包括 2、4、6 或 8 个通道，可以根据需要进行灵活的配置和扩展。这使得 NVLink 适用于不同规模和需求的系统配置。</p>
+<p>在刚刚的通信中，PCIe3.0*16 的双向带宽不足 32GB/s，当训练数据不断增长时，PCIe 的带宽满足不了需求，会逐渐成为系统瓶颈。为提升多 GPU 之间的通信性能，充分发挥 GPU 的计算性能，NVIDIA 于 2016 年发布了全新架构的 NVLink。NVLink 是一种高速、高带宽的互连技术，用于连接多个 GPU 之间或连接 GPU 与其他设备（如CPU、内存等）之间的通信。NVLink 提供了直接的点对点连接，具有比传统的 PCIe 总线更高的传输速度和更低的延迟。 NVLink 支持多种连接配置，包括 2、4、6 或 8 个通道，可以根据需要进行灵活的配置和扩展。这使得 NVLink 适用于不同规模和需求的系统配置。</p>
 <p>但是，只有8个通道还是太少了。NVIDIA在2018年又发布了 NVSwitch，实现了 NVLink 的全连接。NVIDIA NVSwitch 是首款节点交换架构，可支持单个服务器节点中 16 个全互联的 GPU，并可使全部 8 个 GPU 对分别达到 300GB/s 的速度同时进行通信。</p>
 <p>当然，我们这里就用不上了，但是我们可以看到，通信技术的不断增长，背后影射的是计算速度的提升与需求的提高，他们推动着通信的研究。</p>
 <h2><a class="anchor" id="autotoc_md21"></a>
 5. 类型转换 &amp; 计算</h2>
-<p>我们在设计类时为了方便，在CPU上的C++使用了泛型。因此，它只能支持同类型（int + int, float+float）等的转换。不过这问题不大，反正到计算时GPU也只能进行这种操作。</p>
-<p>我们这里没有对核函数进行优化，他们将在Project5中使用。这样，Project4的矩阵类也可以作为Project5的模板，非常的方便。</p>
+<p>我们在设计类时为了方便，在CPU上的C++使用了泛型。因此，它只能支持同类型（int + int, float+float）等的转换。不过这问题不大，反正到计算时GPU也只能进行这种操作。 我们这里没有对核函数进行优化，他们将在Project5中使用。这样，Project4的矩阵类也可以作为Project5的模板，非常的方便。</p>
 <p>另外提供了一些小函数，比如LU分解。</p>
 <h2><a class="anchor" id="autotoc_md22"></a>
 6. 重载运算符</h2>
-<p>重载了+，*，-，=<a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="mul Kernel be faster! https://github.com/njuhope/cuda_sgemm/blob/master/gemm.cu">，()</a>等运算符。注意到在加减乘方法中，我们声明了一个新矩阵。</p>
-<p>是的没错，如果我们没有之前的软copy的话，我们的矩阵将会把数值重新复制一遍。但是在重写了拷贝构造函数后，我们的矩阵只会复制指针。在result矩阵生命周期停止时，它只会将矩阵的指针传递给我们的结果Matrix，不会对大数据造成影响。</p>
+<p>重载了+，*，-，=<a class="el" href="a1_8cpp.html#acb744b2fbe27906ed5a04a374112a1b4" title="GPU mul kernel.">，()</a>等运算符。注意到在加减乘方法中，我们声明了一个新矩阵。 是的没错，如果我们没有之前的软copy的话，我们的矩阵将会把数值重新复制一遍。但是在重写了拷贝构造函数后，我们的矩阵只会复制指针。在result矩阵生命周期停止时，它只会将矩阵的指针传递给我们的结果Matrix，不会对大数据造成影响。</p>
 <p>我们的 <a class="el" href="class_matrix.html" title="Base MAT class for GPU memory with reference counting.">Matrix</a> 类实现了拷贝构造函数和赋值运算符重载，返回的 result 对象会被正确地拷贝到 C 中，而非直接赋值。</p>
 <h2><a class="anchor" id="autotoc_md23"></a>
 6. ROI</h2>
-<p>回到我们的设计图中，没错，我们将ROI看做是另一个矩阵的子矩阵，或者说我们是对同样一份数据但是指针位置不同的矩阵。他们共享一块ref_count和data，他们的指针指向同一个方向的数据。但是他们的 ROI会遇到一个问题，就是当我们有多个ROI时，我们应该以根矩阵为“参考系”，来计算我们感兴趣的地区。这是董学长在他的报告中指出的：</p>
+<p>回到我们的设计图中，没错，我们将ROI看做是另一个矩阵的子矩阵，或者说我们是对同样一份数据但是指针位置不同的矩阵。他们共享一块ref_count和data，他们的指针指向同一个方向的数据。但是他们的</p>
+<p>ROI会遇到一个问题，就是当我们有多个ROI时，我们应该以根矩阵为“参考系”，来计算我们感兴趣的地区。这是董学长在他的报告中指出的：</p>
 <p>为此我们设计了一个寻找根矩阵的流程。</p>
 <p>这样，我们的ROI就可以准确定位到我们最想要的矩阵上了。</p>
-<p>第二个问题产生在释放的时候。如果我们的矩阵是ROI，那么我们如果在释放的时候还是释放的data*，那我们只是释放了ROI的数据，对整个矩阵的数据没有进行释放。 对此，我们可以判断，如果我们的是一个ROI，我们就销毁父矩阵所指的数据区域，也就是全部的数据区域。</p>
+<p>第二个问题产生在释放的时候。如果我们的矩阵是ROI，那么我们如果在释放的时候还是释放的data*，那我们只是释放了ROI的数据，对整个矩阵的数据没有进行释放。 对此，我们可以判断，如果我们的是一个ROI，我们就销毁父矩阵所指的数据区域，也就是全部的数据区域。 灵魂画手</p>
 <h1><a class="anchor" id="autotoc_md24"></a>
 Part 4:简单测试</h1>
 <p>我们在Main.cu文件中对矩阵类进行了测试。测试分为可用性测试及速度测试。</p>
@@ -239,9 +232,8 @@ Part 4:简单测试</h1>
 <h1><a class="anchor" id="autotoc_md27"></a>
 Part 5:总结</h1>
 <p>在本次Project中我们制作了一个GPU矩阵类，实现了多数据输入，运算符重载，ROI，内存管理，跨GPU运算等操作，有了基本的系统设计概念与GPU CUDA编程的了解，对C/C++的特性了解地更深刻了。 </p>
-</div></div><!-- PageDoc -->
-<a href="doxygen_crawl.html"/>
-</div><!-- contents -->
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
