@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['information_0',['and Information',['../group___initialization.html',1,'']]]
+  ['mat_0',['CUDA-accelerated MAT',['../group__cuda.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gpu_20mat_0',['CUDA-accelerated GPU MAT',['../group__cuda.html',1,'']]]
+  ['information_0',['Initialization and Information',['../group__s.html',1,'']]],
+  ['initialization_20and_20information_1',['Initialization and Information',['../group__s.html',1,'']]]
 ];
