@@ -14,7 +14,7 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-issue at here
+please issue it on the site if founded
 
 ## Compile
 nvcc main.cu -o Main
