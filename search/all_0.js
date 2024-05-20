@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['accelerated_20gpu_20mat_0',['CUDA-accelerated GPU MAT',['../group__cuda.html',1,'']]],
-  ['and_20information_1',['and Information',['../group___initialization.html',1,'']]]
+  ['0_3a对前3次project的总结与对后2次project的展望_0',['Part 0:对前3次Project的总结与对后2次Project的展望',['../index.html#autotoc_md9',1,'']]]
 ];
